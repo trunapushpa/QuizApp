@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Subgenres</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Genre</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subgenres.each do |subgenre| %>
+      <tr>
+        <td><%= subgenre.name %></td>
+        <td><%= subgenre.genre %></td>
+        <td><%= link_to 'Show', subgenre %></td>
+        <td><%= link_to 'Edit', edit_subgenre_path(subgenre) %></td>
+        <td><%= link_to 'Destroy', subgenre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Subgenre', new_subgenre_path %>

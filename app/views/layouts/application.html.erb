@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QuizApp</title>
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery-1.10.2.min'%>
+    <%= javascript_include_tag 'bootstrap.min'%>
+    <%= stylesheet_link_tag    'bootstrap' %>
+  </head>
+
+  <body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">QuizApp</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+          <li><a href="/takequiz" style="font-size: larger">Take a Quiz</a></li>
+          <li><a href="/leaderboard" style="font-size: larger">Leaderboard</a></li>
+          <!--<li class="dropdown">-->
+            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+            <!--<ul class="dropdown-menu" role="menu">-->
+              <!--<li><a href="#">Action</a></li>-->
+              <!--<li><a href="#">Another action</a></li>-->
+              <!--<li><a href="#">Something else here</a></li>-->
+              <!--<li class="divider"></li>-->
+              <!--<li><a href="#">Separated link</a></li>-->
+              <!--<li class="divider"></li>-->
+              <!--<li><a href="#">One more separated link</a></li>-->
+            <!--</ul>-->
+          <!--</li>-->
+        </ul>
+        <!--<form class="navbar-form navbar-left" role="search">-->
+          <!--<div class="form-group">-->
+            <!--<input type="text" class="form-control" placeholder="Search">-->
+          <!--</div>-->
+          <!--<button type="submit" class="btn btn-default">Submit</button>-->
+        <!--</form>-->
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+              <% if current_user.admin %>
+                  <li><%= link_to "Admin Panel", rails_admin_path, style: "font-size: larger", :method => :get %></li>
+              <%  end %>
+              <li><%= link_to "Sign Out", destroy_user_session_path, style: "font-size: larger", :method => :delete %></li>
+          <% else %>
+              <li><%= link_to "Sign In", new_user_session_path, style: "font-size: larger", :method => :get %></li>
+              <li><%= link_to "Sign Up", new_user_registration_path, :method => :get %></li>
+          <%	end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <%= yield %>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<style>
+  table, th, td {
+    font-size: x-large;
+    text-align: center;
+  }
+</style>
+
+<h2>Log in</h2>
+<br>
+
+<%	if devise_error_messages! !=''  %>
+    <div class="alert alert-dismissible alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong id ="alert" style="color: white"><%= devise_error_messages! %></strong>
+    </div>
+<%	end %>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-horizontal") do |f| %>
+    <div class="field form-group">
+      <%= f.label :email, class: "control-label" %>
+      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :password, class: "control-label" %><br/>
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <br>
+
+    <% if devise_mapping.rememberable? -%>
+        <div class="field form-group">
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :remember_me, type: "checkbox" %>
+              <%= f.label :remember_me %>
+            </label>
+          </div>
+        </div>
+    <% end -%>
+    <br>
+
+    <div class="actions">
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    </div>
+<% end %>
+
+<br>
+
+<%= render "devise/shared/links" %>

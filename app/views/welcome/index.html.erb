@@ -1,0 +1,25 @@
+<style>
+  table, th, td {
+    font-size: x-large;
+    text-align: center;
+  }
+</style>
+
+<h1>Welcome to QuizApp</h1>
+<hr>
+<br>
+
+<p class="lead">Participate in vibrant communities around topics you are passionate about and easily discover new topics that match your interests. Climb the ranks and claim your titles.</p>
+
+<br>
+
+<table class="table">
+  <tr>
+    <td>
+      <%= link_to "Sign In", new_user_session_path, :method => :get ,class: "btn btn-success btn-lg" %>
+    </td>
+    <td>
+      <%= link_to "Sign Up", new_user_registration_path, :method => :get ,class: "btn btn-success btn-lg" %>
+    </td>
+  </tr>
+</table>

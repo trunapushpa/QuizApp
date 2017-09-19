@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @subgenre.name %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @subgenre.genre %>
+</p>
+
+<%= link_to 'Edit', edit_subgenre_path(@subgenre) %> |
+<%= link_to 'Back', subgenres_path %>

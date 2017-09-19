@@ -1,0 +1,60 @@
+<style>
+  input[type=checkbox] {
+  transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  padding: 10px;
+  }
+    .checkbox{
+      font-size: large;
+    }
+</style>
+<br>
+<%= form_for :arr, controller: "takequiz", action: "next", method: "post", class: "form-horizontal" do |form| %>
+    <div class="well bs-component">
+      <div class="container-fluid"><br>
+        <% if (@question.correct1 == true and @question.correct2 == false and @question.correct3 == false and @question.correct4 == false) or (@question.correct1 == false and @question.correct2 == true and @question.correct3 == false and @question.correct4 == false) or (@question.correct1 == false and @question.correct2 == false and @question.correct3 == true and @question.correct4 == false) or (@question.correct1 == false and @question.correct2 == false and @question.correct3 == false and @question.correct4 == true)%>
+          <p style="font-style: italic">(Single correct)</p>
+        <% else %>
+          <p style="font-style: italic">(Multiple correct)</p>
+        <% end %>
+        <h2><%= @question.description.html_safe %></h2>
+        <br>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <%= form.check_box('[1]') %> &nbsp; &nbsp; <%= @question.option1.html_safe %>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <%= form.check_box('[2]') %> &nbsp; &nbsp; <%= @question.option2.html_safe %>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <%= form.check_box('[3]') %> &nbsp; &nbsp; <%= @question.option3.html_safe %>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <%= form.check_box('[4]') %> &nbsp; &nbsp; <%= @question.option4.html_safe %>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <center>
+      <% if @last %>
+          <%= form.submit "Submit", :name => nil, type: "submit", class: "btn btn-lg btn-success btn" %>
+      <% else %>
+          <%= form.submit "Next", :name => nil, type: "submit", class: "btn btn-lg btn-primary btn" %>
+      <% end %>
+    </center>
+<% end %>

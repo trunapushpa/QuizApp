@@ -1,0 +1,54 @@
+<style>
+  table, th, td {
+    font-size: x-large;
+  }
+
+  span {
+    font-size: x-large;
+  }
+
+  .badge {
+    font-size: x-large;
+  }
+</style>
+
+<h1>Dashboard</h1>
+<br>
+
+<% if notice %>
+    <div class="alert alert-dismissible alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong id="notice" style="color: white"><%= notice %></strong>
+    </div>
+<% end %>
+<div class="well bs-component">
+  <table class="table">
+    <tbody>
+    <tr>
+      <td>Email ID</td>
+      <td><%= current_user.email %></td>
+    </tr>
+    <tr>
+      <td>Score</td>
+      <td><%= current_user.score %></td>
+    </tr>
+    <tr>
+      <td>Quizes Taken</td>
+      <td>
+        <ul class="list-group">
+          <% if @quizes.empty? %>
+              No quiz taken
+          <% else %>
+              <% @quizes.each do |quiz| %>
+                  <li class="list-group-item">
+                    <span class="badge"><%= quiz.score %></span>
+                    <%= quiz.subgenre.name %>
+                  </li>
+              <% end %>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
