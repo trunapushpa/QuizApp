@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'rails_admin_rollincode', '~> 1.0'
 gem 'rails_admin'
-gem 'omniauth-facebook'
+# gem 'omniauth-facebook'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

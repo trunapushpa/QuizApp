@@ -135,7 +135,11 @@ class TakequizController < ApplicationController
       current_user.cqqid=0
       current_user.cqid=0
       current_user.save
-      redirect_to dashboard_index_path, notice: "Quiz Completed Successfully. You scored "+ @quizdone.score.to_s + " points."
+      @correct = (@quizdone.score)/10
+      @incorrect = @subgenre.questions.count - @correct
+      session[:correct] = @correct
+      session[:incorrect] = @incorrect
+      redirect_to dashboard_index_path, notice: "Quiz Completed Successfully. You scored "+ @quizdone.score.to_s + " points.", correct: @correct, incorrect: @incorrect
     end
   end
 

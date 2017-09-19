@@ -10,6 +10,9 @@
   .badge {
     font-size: x-large;
   }
+  .morris-chart text {
+    fill: white;
+  }
 </style>
 
 <h1>Dashboard</h1>
@@ -21,6 +24,34 @@
       <strong id="notice" style="color: white"><%= notice %></strong>
     </div>
 <% end %>
+
+<% if @correct %>
+    <div class="alert alert-dismissible">
+      <div class = "well">
+        <div class="container-fluid">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <div >
+          <div id="donut" class="morris-chart" style="height: 300px; color: white"></div>
+          <br><br>
+        </div>
+      </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+        Morris.Donut({
+            element: 'donut',
+            data: [
+                {label: "Correct", value: <%= @correct %>},
+                {label: "Wrong", value: <%= @incorrect %>}
+            ],
+            colors :[
+                "#00A85C",
+                "#FF4031"
+            ]
+        });
+    </script>
+<% end %>
+
 <div class="well bs-component">
   <table class="table">
     <tbody>
